@@ -1,0 +1,41 @@
+{
+  "name": "rest-metrics-server",
+  "version": "1.0.1",
+  "description": "The present repository consists of the backend code of an IVG's dashboard project developed in Chile. It's a node.js's express server, which is connected to a ElasticSearch database (in where the logs of IVG's are indexed) and to a MongoDB (which is in charge of users authentication). As a optional feature, if the dashboard is deployed on a Kubernetes enviroment, it would retrieve health information through API calls to the cluster.  There are mainly 5 controllers groups: - **auth**: responsible of authenticate the requests.     - Authorization grant by a JWT Bearer Token - **conversations**: responsible of obtaining the conversational logs of Watson Assistant to retrieve the user's interactions.     - List of calls by time range     - Call detail by conversationID (inputs/outputs)     - Audio of call by ID (audios are assumed to be storage on /recordings path of host) - **reports**: responsible of obtaining CDR logs of Voice Gateway to retrieve general calls information.     - Amount of calls by time range     - Average Latency (Watson Assistant + STT + TTS) by time range     - Intents: Most frequent intents by time range     - Average call duration by time range     - Average setup time by time range - **kubernetes** (if deployed on K8s): responsible of communiacation with the K8s cluster to retrieve health of the pod's.     - Get pods detail with label=vgw-dashboard - **users**: responsible of the comunication with the MongoDB to manage user information.     - Add user     - Edit user     - Remove user",
+  "main": "index.js",
+  "scripts": {
+    "start": "node bin/www",
+    "dev": "NODE_ENV=development nodemon bin/www"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.20.0",
+    "bcrypt-nodejs": "0.0.3",
+    "connect-flash": "^0.1.1",
+    "cors": "^2.8.4",
+    "elasticsearch": "^15.1.1",
+    "express": "^4.16.4",
+    "http-errors": "^1.7.1",
+    "ibm-cos-sdk": "^1.7.0",
+    "jsonwebtoken": "^8.4.0",
+    "kubernetes-client": "^9.0.0",
+    "moment": "^2.22.2",
+    "mongoose": "^5.3.11",
+    "passport": "^0.4.0",
+    "passport-jwt": "^4.0.0",
+    "passport-local": "^1.0.0",
+    "validator": "^10.9.0"
+  },
+  "devDependencies": {
+    "dotenv": "^6.1.0",
+    "nodemon": "^2.0.4"
+  },
+  "engines": {
+    "node": ">=9.0.0",
+    "npm": ">=6.0.0"
+  },
+  "directories": {
+    "doc": "docs"
+  }
+}
